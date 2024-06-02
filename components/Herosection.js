@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     paddingLeft: 24,
     backgroundColor: "#0F1014",
-    marginBottom:7.08,
+    // marginBottom:7.08,
   },
   textbox: {
     width: 327,
@@ -230,10 +230,8 @@ const styles = StyleSheet.create({
     padding: 5.11,
     paddingHorizontal: 11.08,
     paddingVertical: 5.11,
-    marginBottom: 7, // Gap between components
+    marginBottom: 7, 
     borderRadius: 5,
-    borderTopRightRadius: 0, // Top right border radius set to 0
-    borderBottomRightRadius: 0, // Bottom right border radius set to 0
   },
   rating: {
     width: 83,
@@ -255,7 +253,7 @@ const styles = StyleSheet.create({
     lineHeight: 16.8,
     textAlign: 'left',
     color: '#D2D2D2',
-    marginTop: 6, // Gap between components
+    marginTop: 6,
   },
   tick: {
     width: 14,
@@ -268,14 +266,14 @@ const styles = StyleSheet.create({
       marginTop: 20,
       marginLeft:8
       // backgroundColor:'#ffffff'
-      // margin: 0, // If you intended gap between elements, you might need margin or padding
+      // margin: 0,
     
   },
   formframe:{
     width: 327,
     height: 27,
     paddingTop: 6,
-    //  marginTop: 10, // Use margin on child elements to simulate gap
+    //  marginTop: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     backgroundColor: '#E84D84'
