@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image,TextInput } from "react-native";
+import { StyleSheet, Text, View, Image,TextInput ,TouchableOpacity} from "react-native";
 import * as Font from "expo-font";
 export default function Herosection() {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -14,9 +14,24 @@ export default function Herosection() {
     }
     loadFont();
   }, []);
+
+
   const [text, setText] = useState('');
   const [number, setNumber] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [profession, setProfession] = useState('');
+  const [goal, setGoal] = useState('');
+  const [city, setCity] = useState('');
+  const [selectedValue, setSelectedValue] = useState(null);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelectValue = (value) => {
+    setSelectedValue(value);
+    setIsOpen(false);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.textbox}>
@@ -61,29 +76,73 @@ export default function Herosection() {
       />
           </View>
           <View style={styles.frame6}>
-          <Text style={styles.frame6t}>*Enter your WhatsApp Number</Text>
+          <Text style={styles.frame4t}>*Enter your WhatsApp Number</Text>
           <View>
-          
+          <View style={styles.inputss}>
+          <View style={styles.dropdownn}>
+      <TouchableOpacity onPress={toggleDropdown} style={styles.box}>
+        <Text style={styles.droptext}>{selectedValue || '+91'}</Text>
+      </TouchableOpacity>
+
+      {isOpen && (
+        <View style={styles.dropdown}>
+          <TouchableOpacity onPress={() => handleSelectValue('+1')}>
+            <Text>+1</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleSelectValue('+91')}>
+            <Text>+91</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+          </View>
             <TextInput
-        style={styles.input}
+        style={styles.input2}
         onChangeText={setNumber}
         value={number}
         placeholder="Eg. 0000000000"
-      />
+      /></View>
       </View>
           </View>
           <View style={styles.frame8}>
-          
+          <View style={styles.frame4}>
+          <Text style={styles.frame4t}>*Select your profession</Text>
+          <TextInput
+        style={styles.input}
+        onChangeText={setProfession}
+        value={profession}
+        placeholder="Choose the most relevant option"
+      />
+          </View>
           </View>
           <View style={styles.frame9}>
-          
+          <View style={styles.frame4}>
+          <Text style={styles.frame4t}>*Select your goal</Text>
+          <TextInput
+        style={styles.input}
+        onChangeText={setGoal}
+        value={goal}
+        placeholder="Choose the most relevant option"
+      />
+          </View>
           </View>
           <View style={styles.frame10}>
-          
+          <View style={styles.frame4}>
+          <Text style={styles.frame4t}>*Select your city</Text>
+          <TextInput
+        style={styles.input}
+        onChangeText={setCity}
+        value={city}
+        placeholder="Choose the most relevant option"
+      />
+          </View>
           </View>
           
           </View>)}
-          <View style={styles.submit}></View>
+          <View style={styles.submit}>
+
+        <Text style={styles.submitbtn}>Submit</Text>
+
+          </View>
       </View>
       </View></View>
 
@@ -91,6 +150,51 @@ export default function Herosection() {
 }
 
 const styles = StyleSheet.create({
+  submitbtn:{
+    fontWeight:'600',
+    color:'#ffffff'
+  },
+  submit:{
+    width: 307,
+    height: 36,
+    paddingTop: 9.09,
+    paddingRight: 113.36,
+    paddingBottom: 9.11,
+    paddingLeft: 120.36,
+    borderRadius: 4,
+    backgroundColor:'#E54988',
+    margin:10
+
+  },
+  droptext:{
+    color:'#505050',
+  },
+  box: {
+    width: 60,
+    height: 22.86,
+    // paddingTop: 7,
+    // paddingRight: 12,
+    // paddingBottom: 9,
+    // paddingLeft: 12,
+    borderColor:'#D9D9D9',
+    borderRadius: 4,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+  },
+  dropdown: {
+    position:'absolute',
+    top:14,
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: '#D9D9D9',
+    backgroundColor: 'white',
+    width: 30,
+  },
   container: {
     width: 375,
     width: "100%",
@@ -162,7 +266,8 @@ const styles = StyleSheet.create({
       width: 327,
       height: 431,
       marginTop: 20,
-      backgroundColor:'#ffffff'
+      marginLeft:8
+      // backgroundColor:'#ffffff'
       // margin: 0, // If you intended gap between elements, you might need margin or padding
     
   },
@@ -189,7 +294,7 @@ const styles = StyleSheet.create({
     // paddingTop: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    backgroundColor:'#FFCCCB'
+    backgroundColor:'#FFFFFF'
   },
   content:{
     width: 307,
@@ -200,7 +305,7 @@ const styles = StyleSheet.create({
   frame4:{
     width: 307,
     height: 62,
-    backgroundColor:'#ffffff',
+    // backgroundColor:'#ffffff',
   },
   frame4t:{
     fontFamily:'pingfangsc',
@@ -213,22 +318,26 @@ const styles = StyleSheet.create({
   frame6:{
     width: 307,
     height: 62,
-    backgroundColor:'#ffffff'
+    // backgroundColor:'#ffffff',
+    marginTop:11
   },
   frame8:{
     width: 307,
     height: 55,
+    marginTop:11
     // backgroundColor:'#ffffff'
   },
   frame9:{
     width: 307,
     height: 55,
+    marginTop:11
     // backgroundColor:'#ffffff'
   },
   frame10:{
     width: 307,
     height: 55,
-    backgroundColor:'#ffffff'
+    marginTop:11,
+    // backgroundColor:'#ffffff'
   },
   input:{
     fontFamily: 'pingfangsc',
@@ -238,7 +347,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: 307,
     height: 35,
-    color:'#BFBFBF',
+    color:'#000000',
     paddingVertical: 7,
     paddingHorizontal: 12,
     borderRadius: 4,
@@ -246,6 +355,30 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     borderStyle: 'solid',
     marginTop:11,
+  },
+  input2:{
+    fontFamily: 'pingfangsc',
+    fontSize: 13.56,
+    fontWeight: '400',
+    lineHeight: 18.99,
+    textAlign: 'left',
+    width: 236,
+    height: 35,
+    color:'#000000',
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#D9D9D9',
+    borderStyle: 'solid',
+  },
+  inputss:{
+   display:'flex',
+   flex:1,
+   flexWrap:'wrap',
+   justifyContent:'space-between',
+   gap:11,
+   marginTop:11
   }
 
 });
